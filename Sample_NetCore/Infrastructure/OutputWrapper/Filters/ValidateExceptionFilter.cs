@@ -25,10 +25,10 @@ namespace Sample_NetCore.Infrastructure.OutputWrapper.Filters
 
             var output = new FailureResultOutputModel
             {
-                Id = EvertrustAsyncContext.CorrelationId,
+                Id = AsyncContext.CorrelationId,
                 Method = $"{context.HttpContext.Request.Path}.{context.HttpContext.Request.Method}",
                 Status = "ValidationError",
-                ApiVersion = EvertrustAsyncContext.Version
+                ApiVersion = AsyncContext.Version
             };
 
             output.Errors.Add(new FailureInformation

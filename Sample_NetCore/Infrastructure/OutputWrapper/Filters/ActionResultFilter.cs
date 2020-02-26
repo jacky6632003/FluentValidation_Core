@@ -12,7 +12,7 @@ namespace Sample_NetCore.Infrastructure.OutputWrapper.Filters
     /// class EvertrustActionResultFilter.
     /// </summary>
     /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Filters.IAsyncActionFilter" />
-    public class EvertrustActionResultFilter : IAsyncActionFilter
+    public class ActionResultFilter : IAsyncActionFilter
     {
         /// <inheritdoc />
         /// <summary>
@@ -51,8 +51,8 @@ namespace Sample_NetCore.Infrastructure.OutputWrapper.Filters
                     {
                         var failureResponse = new FailureResultOutputModel
                         {
-                            Id = EvertrustAsyncContext.CorrelationId,
-                            ApiVersion = EvertrustAsyncContext.Version,
+                            Id = AsyncContext.CorrelationId,
+                            ApiVersion = AsyncContext.Version,
                             Method = $"{context.HttpContext.Request.Path}.{httpMethod}",
                             Status = "Faliure",
                             Errors = new List<FailureInformation> { (FailureInformation)result.Value }
@@ -67,8 +67,8 @@ namespace Sample_NetCore.Infrastructure.OutputWrapper.Filters
                     {
                         var successResponse = new SuccessResultOutputModel<object>
                         {
-                            Id = EvertrustAsyncContext.CorrelationId,
-                            ApiVersion = EvertrustAsyncContext.Version,
+                            Id = AsyncContext.CorrelationId,
+                            ApiVersion = AsyncContext.Version,
                             Method = $"{context.HttpContext.Request.Path}.{httpMethod}",
                             Status = "Success",
                             Data = result.Value

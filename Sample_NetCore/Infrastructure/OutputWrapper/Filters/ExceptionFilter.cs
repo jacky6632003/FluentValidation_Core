@@ -14,7 +14,7 @@ namespace Sample_NetCore.Infrastructure.OutputWrapper.Filters
     /// class EvertrustExceptionFilter.
     /// </summary>
     /// <seealso cref="T:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter" />
-    public class EvertrustExceptionFilter : IAsyncExceptionFilter
+    public class ExceptionFilter : IAsyncExceptionFilter
     {
         /// <inheritdoc />
         /// <summary>
@@ -32,10 +32,10 @@ namespace Sample_NetCore.Infrastructure.OutputWrapper.Filters
             {
                 var result = new FailureResultOutputModel
                 {
-                    Id = EvertrustAsyncContext.CorrelationId,
+                    Id = AsyncContext.CorrelationId,
                     Method = $"{context.HttpContext.Request.Path}.{context.HttpContext.Request.Method}",
                     Status = "ValidationError",
-                    ApiVersion = EvertrustAsyncContext.Version,
+                    ApiVersion = AsyncContext.Version,
                     Errors = new List<FailureInformation>
                     {
                         new FailureInformation

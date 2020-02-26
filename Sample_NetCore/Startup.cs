@@ -26,8 +26,8 @@ namespace Sample_NetCore
             services.AddControllers(options =>
             {
                 options.Filters.Add(new ValidateExceptionFilter());
-                options.Filters.Add(new EvertrustExceptionFilter());
-                options.Filters.Add(new EvertrustActionResultFilter());
+                options.Filters.Add(new ExceptionFilter());
+                options.Filters.Add(new ActionResultFilter());
 
                 options.OutputFormatters.RemoveType<XmlDataContractSerializerOutputFormatter>();
             })
@@ -51,9 +51,9 @@ namespace Sample_NetCore
 
             app.Use(async (context, next) =>
             {
-                EvertrustAsyncContext.CorrelationId = Guid.NewGuid();
-                EvertrustAsyncContext.Domain = "Sample";
-                EvertrustAsyncContext.Version = "1.0.0";
+                AsyncContext.CorrelationId = Guid.NewGuid();
+                AsyncContext.Domain = "Sample";
+                AsyncContext.Version = "1.0.0";
 
                 await next.Invoke();
             });

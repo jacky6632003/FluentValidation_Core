@@ -6,7 +6,7 @@ namespace Sample_NetCore.Infrastructure.OutputWrapper
     /// <summary>
     /// class EvertrustAsyncContext.
     /// </summary>
-    public static class EvertrustAsyncContext
+    public static class AsyncContext
     {
         private static readonly AsyncLocal<Guid> _correlationId = new AsyncLocal<Guid>();
         private static readonly AsyncLocal<string> _domain = new AsyncLocal<string>();

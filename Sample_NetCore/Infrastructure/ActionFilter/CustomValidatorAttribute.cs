@@ -46,8 +46,8 @@ namespace Sample_NetCore.Infrastructure.ActionFilters
 
                 var failureOutputModel = new FailureResultOutputModel
                 {
-                    Id = EvertrustAsyncContext.CorrelationId,
-                    ApiVersion = EvertrustAsyncContext.Version,
+                    Id = AsyncContext.CorrelationId,
+                    ApiVersion = AsyncContext.Version,
                     Method = $"{context.HttpContext.Request.Path}.{context.HttpContext.Request.Method}",
                     Status = "VaildationError",
                     Errors = new List<FailureInformation>
